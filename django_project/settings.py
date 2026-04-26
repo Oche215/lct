@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from urllib.request import localhost
+
 from dotenv import load_dotenv
 import os
 
@@ -33,8 +35,8 @@ SECRET_KEY = 'django-insecure-2g&m-t5hm54a-44jsstq7-5becc))@t+@v%b9cdbc()3+f3bhc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['web-production-ad9e3.up.railway.app', 'http://web-production-ad9e3.up.railway.app', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-ad9e3.up.railway.app', 'https://localhost' ]
 
 
 # Application definition
