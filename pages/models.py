@@ -2,7 +2,7 @@ from django.db import models
 
 # Define choices as a tuple of tuples (value, human-readable label)
 CHOICES = [
-    ('default', '--------------------------------------- Select a subject ------------------------------ '),
+    ('default', '----------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Select a subject &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------------------'),
     ('inquiry', 'Inquiry'),
     ('support', 'Support Request'),
     ('freelance', 'Freelance Job Opportunities'),
