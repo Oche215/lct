@@ -92,6 +92,10 @@
             <h3 class="h5 text-mute mb-4" style="font-family: 'Bradley Hand ITC'">upload excel template</h3>
         </div>
         <div class="row text-center">
+            <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <input type="file" name="file">
+                <button type="submit">Upload</button>
+            </form>
 
         </div>
     </div>
