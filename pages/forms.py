@@ -1,10 +1,9 @@
 from django.db import models
 from django import forms
-from .models import ContactUs
+from .models import ContactUs, Sales
 
 
 class ContactUsForm(forms.ModelForm):
-
 	class Meta:
 		model = ContactUs
 		fields = ('name', 'phone', 'email', 'subject', 'message', )
@@ -33,3 +32,10 @@ class ContactUsForm(forms.ModelForm):
 			'placeholder': 'Enter your message here...'
 		})
 		self.fields["message"].label = ''
+
+
+
+class SalesForm(forms.Form):
+	class Meta:
+		model = Sales
+		fields = '__all__'

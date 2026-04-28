@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Product
+from .models import Product, Sales
 from .forms import ContactUsForm
 from django.contrib import messages
+
+from tablib import Dataset
+from .resources import SalesResources
+
 
 # Create your views here.
 def home(request):
@@ -34,3 +38,8 @@ def chart_data(request):
 def chart_view(request):
     return render(request, 'chart.html', {})
 
+
+def import_excel_data(request):
+    if request.method == 'POST':
+        pass
+    return render(request, 'dashboard/dataform.html', {})
