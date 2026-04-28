@@ -43,3 +43,18 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.category})"
+
+
+class Sales(models.Model):
+    order_date = models.DateTimeField(auto_now_add=True)
+    region = models.CharField(max_length=100)
+    manager = models.CharField(max_length=100)
+    salesman = models.CharField(max_length=100)
+    product = models.CharField(max_length=220, blank=False)
+    unit = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.salesman} ({self.region})"
+
