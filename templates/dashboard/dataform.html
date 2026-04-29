@@ -80,26 +80,26 @@
 <!--                </div>-->
 <!--            </div>-->
 
-<!--        </div>-->
-<!--        <a class="btn btn-outline-light btn-xl text-uppercase" href="#services">Tell Me More</a>-->
-<!--    </div>-->
-<!--</header>-->
-<!-- Services-->
-<!--<section class="page-section" id="services">-->
-<!--    <div class="container">-->
-<!--        <div class="text-center">-->
-<!--            <h2 class="section-heading text-uppercase">Dashboard</h2>-->
-<!--            <h3 class="h5 text-mute mb-4" style="font-family: 'Bradley Hand ITC'">upload excel template</h3>-->
-<!--        </div>-->
-<!--        <div class="row text-center">-->
-<!--            <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}-->
-<!--                <input type="file" name="file">-->
-<!--                <button type="submit">Upload</button>-->
-<!--            </form>-->
+        </div>
+        <a class="btn btn-outline-light btn-xl text-uppercase" href="#services">Tell Me More</a>
+    </div>
+</header>
+ Services
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Dashboard</h2>
+            <h3 class="h5 text-mute mb-4" style="font-family: 'Bradley Hand ITC'">upload excel template</h3>
+        </div>
+        <div class="row text-center">
+            <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
 
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+        </div>
+    </div>
+</section>
 <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
