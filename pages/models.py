@@ -1,3 +1,5 @@
+from wsgiref.handlers import format_date_time
+
 from django.db import models
 
 # Define choices as a tuple of tuples (value, human-readable label)
@@ -46,8 +48,8 @@ class Product(models.Model):
 
 
 class Sales(models.Model):
-    order_date = models.DateTimeField(auto_now_add=True)
-    region = models.CharField(max_length=100)
+    order_date = models.DateTimeField()
+    region = models.CharField(max_length=200)
     manager = models.CharField(max_length=100)
     salesman = models.CharField(max_length=100)
     product = models.CharField(max_length=220, blank=False)
