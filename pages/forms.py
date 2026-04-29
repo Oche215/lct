@@ -35,7 +35,11 @@ class ContactUsForm(forms.ModelForm):
 
 
 
-class SalesForm(forms.Form):
+class SalesForm(forms.ModelForm):
 	class Meta:
 		model = Sales
 		fields = '__all__'
+
+class UploadForm(forms.FileInput):
+	class Meta:
+		fields = ('file', )

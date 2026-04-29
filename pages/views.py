@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Product, Sales
-from .forms import ContactUsForm, SalesForm
+from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
 
 from tablib import Dataset
@@ -40,7 +40,7 @@ def chart_view(request):
 
 
 def import_excel_data(request):
-    form = SalesForm()
+    form = UploadForm()
     if request.method == 'POST':
         resource = SalesResources()
         dataset = Dataset()
