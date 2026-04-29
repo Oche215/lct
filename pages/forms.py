@@ -40,6 +40,5 @@ class SalesForm(forms.ModelForm):
 		model = Sales
 		fields = '__all__'
 
-class UploadForm(forms.FileInput):
-	class Meta:
-		fields = ('file', )
+class UploadForm(forms.Form):
+	file = forms.FileField(label="Select a file", widget=forms.ClearableFileInput(attrs={'class': 'form-control'}) )
