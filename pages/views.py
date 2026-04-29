@@ -61,7 +61,7 @@ def import_excel_data(request):
 
             # Process rows
             for row in imported_data:
-                Sales.objects.update_or_create(
+                Sales.objects.get_or_create(
                     id=row[0],  # Assuming first column is ID
                     defaults={
                         'order_date': row[1],
