@@ -64,14 +64,14 @@ def import_excel_data(request):
                 Sales.objects.update_or_create(
                     id=row[0],  # Assuming first column is ID
                     defaults={
-                        'field1': row[1],
-                        'field2': row[2],
-                        'field3': row[3],
-                        'field4': row[4],
-                        'field5': row[5],
-                        'field6': row[6],
-                        'field7': row[7],
-                        'field8': row[8],
+                        'order_date': row[1],
+                        'region': row[2],
+                        'manager': row[3],
+                        'salesman': row[4],
+                        'product': row[5],
+                        'unit': row[6],
+                        'price': row[7],
+                        'amount': row[8],
                     }
                 )
 
