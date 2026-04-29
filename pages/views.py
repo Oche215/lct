@@ -40,6 +40,7 @@ def chart_view(request):
 
 
 def import_excel_data(request):
+    form =
     if request.method == 'POST':
         resource = SalesResources()
         dataset = Dataset()
@@ -52,4 +53,4 @@ def import_excel_data(request):
                 data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
             )
             value.save()
-    return render(request, 'dashboard/dataform.html', {})
+    return render(request, 'dashboard/dataform.html', {'new_data': new_data})
