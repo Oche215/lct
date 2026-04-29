@@ -41,17 +41,62 @@ def chart_view(request):
 
 def import_excel_data(request):
     form = UploadForm()
+
     if request.method == 'POST':
-        resource = SalesResources()
-        dataset = Dataset()
+        try:
+            # Validate file presence
+            uploaded_file = request.FILES.get('file')
+            if not uploaded_file:
+                messages.error(request, "No file uploaded.")
+                return render(request, 'dashboard/dataform.html', {'form': form})
 
-        new_data = request.FILES['file']
-        import_data = dataset.load(new_data.read(), format='xlsx', )
+            # Validate file extension
+            if not uploaded_file.name.lower().endswith(('.xlsx', '.xls')):
+                messages.error(request, "Invalid file format. Please upload an Excel file.")
+                return render(request, 'dashboard/dataform.html', {'form': form})
 
-        for data in import_data:
-            value = Sales(
-                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
-            )
-            value.save()
+            # Load dataset
+            dataset = Dataset()
+            imported_data = dataset.load(uploaded_file.read(), format='xlsx')
+
+            # Process rows
+            for row in imported_data:
+                Sales.objects.update_or_create(
+                    id=row[0],  # Assuming first column is ID
+                    defaults={
+                        'field1': row[1],
+                        'field2': row[2],
+                        'field3': row[3],
+                        'field4': row[4],
+                        'field5': row[5],
+                        'field6': row[6],
+                        'field7': row[7],
+                        'field8': row[8],
+                    }
+                )
+
+            messages.success(request, "Data imported successfully!")
+
+        except Exception as e:
+            messages.error(request, f"Error importing data: {str(e)}")
 
     return render(request, 'dashboard/dataform.html', {'form': form})
+
+
+
+# def import_excel_data(request):
+#     form = UploadForm()
+#     if request.method == 'POST':
+#         resource = SalesResources()
+#         dataset = Dataset()
+#
+#         new_data = request.FILES['file']
+#         import_data = dataset.load(new_data.read(), format='xlsx', )
+#
+#         for data in import_data:
+#             value = Sales.objects.update_or_create(
+#                 data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+#             )
+#             value.save()
+#
+#     return render(request, 'dashboard/dataform.html', {'form': form})
