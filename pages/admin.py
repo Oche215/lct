@@ -12,6 +12,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Sales)
 class SalesAdmin(admin.ModelAdmin):
-    list_display = ('order_date', 'region', 'manager', 'salesman', 'product', 'unit', 'price', 'amount'  )
-    list_filter = ('region', 'product')
+    list_display = ('order_date', 'region', 'manager', 'salesman', 'product', 'unit', 'price', 'amount')
 
