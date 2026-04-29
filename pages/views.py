@@ -45,7 +45,7 @@ def import_excel_data(request):
         dataset = Dataset()
 
         new_data = request.FILES['file']
-        import_data = dataset.load(new_data.read(), format='xlsx', engine='openpyxl')
+        import_data = dataset.load(new_data.read(), format='xlsx', )
 
         for data in import_data:
             value = Sales(
