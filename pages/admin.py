@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category')
     list_filter = ('category',)
 
-admin.site.register(Sales)
+@admin.register(Sales)
 class SalesAdmin(admin.ModelAdmin):
     list_display = ('order_date', 'region', 'manager', 'salesman', 'product', 'unit', 'price', 'amount'  )
     list_filter = ('region', 'product')
