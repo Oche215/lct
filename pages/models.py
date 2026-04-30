@@ -60,3 +60,17 @@ class Sales(models.Model):
     def __str__(self):
         return f"{self.salesman} ({self.region})"
 
+
+class Inventory(models.Model):
+    product_id = models.AutoField(primary_key=True)  # Auto-increment ID
+    name = models.CharField(max_length=100)
+    initial_stock = models.PositiveIntegerField()
+    stock_in = models.PositiveIntegerField()
+    stock_sold = models.PositiveIntegerField()
+    available_stock = models.PositiveIntegerField()
+
+    unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=12, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.name} (Stock In Hand: {self.available_stock})"
