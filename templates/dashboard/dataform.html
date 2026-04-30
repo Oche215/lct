@@ -51,7 +51,7 @@
                     {{ form.as_p }}
                     <!-- Submit Button-->
                     <div class="text-center">
-                        <button class="btn btn-outline-dark btn-xl text-uppercase" type="submit">Upload File
+                        <button id="sales_submit" class="btn btn-outline-dark btn-xl text-uppercase" type="submit">Upload File
                         </button>
                     </div>
                 </form>
@@ -71,12 +71,12 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Import Excel Data Into Database</h2>
-                <p class="lead">Sales Data Model.</p>
+                <p class="lead">Inventory Data Model.</p>
                 <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
                     {{ form.as_p }}
                     <!-- Submit Button-->
                     <div class="text-center">
-                        <button class="btn btn-outline-dark btn-lg text-uppercase" type="submit">Upload File
+                        <button id="inventory_submit" class="btn btn-outline-dark btn-lg text-uppercase" type="submit">Upload File
                         </button>
                     </div>
                 </form>

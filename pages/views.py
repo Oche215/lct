@@ -56,31 +56,62 @@ def import_excel_data(request):
             messages.error(request, "Invalid file format. Please upload an Excel file.")
             return render(request, 'dashboard/dataform.html', {'form': form})
 
-        try:
-            # 3. Load dataset
-            dataset = Dataset()
-            file_format = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
-            imported_data = dataset.load(uploaded_file.read(), format=file_format)
+        if 'sales_submit' in request.POST:
+            try:
+                # 3. Load dataset
+                dataset = Dataset()
+                file_format = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
+                imported_data = dataset.load(uploaded_file.read(), format=file_format)
 
-            # 4. Process rows
-            for row in imported_data:
-                Sales.objects.update_or_create(
-                    id=row[0],  # Assuming first column is ID
-                    defaults={
-                        'order_date': row[1],
-                        'region': row[2],
-                        'manager': row[3],
-                        'salesman': row[4],
-                        'product': row[5],
-                        'unit': row[6],
-                        'price': row[7],
-                        'amount': row[8],
-                    }
-                )
+                # 4. Process rows
+                for row in imported_data:
+                    Sales.objects.update_or_create(
+                        id=row[0],  # Assuming first column is ID
+                        defaults={
+                            'order_date': row[1],
+                            'region': row[2],
+                            'manager': row[3],
+                            'salesman': row[4],
+                            'product': row[5],
+                            'unit': row[6],
+                            'price': row[7],
+                            'amount': row[8],
+                        }
+                    )
 
-            messages.success(request, "Data imported successfully!")
+                messages.success(request, "Data imported successfully!")
 
-        except Exception as e:
-            messages.error(request, f"Error importing data: {e}")
+            except Exception as e:
+                messages.error(request, f"Error importing data: {e}")
+
+        else:
+            if 'inventory_submit' in request.POST:
+                try:
+                    # 3. Load dataset
+                    dataset = Dataset()
+                    file_format = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
+                    imported_data = dataset.load(uploaded_file.read(), format=file_format)
+
+                    # 4. Process rows
+                    for row in imported_data:
+                        Sales.objects.update_or_create(
+                            id=row[0],  # Assuming first column is ID
+                            defaults={
+                                'product_id': row[1],
+                                'name': row[2],
+                                'initial_stock': row[3],
+                                'stock_in': row[4],
+                                'stock_sold': row[5],
+                                'available_stock': row[6],
+                                'unit_price': row[7],
+                                'total_amount': row[8],
+                            }
+                        )
+
+
+                    messages.success(request, "Data imported successfully!")
+
+                except Exception as e:
+                    messages.error(request, f"Error importing data: {e}")
 
     return render(request, 'dashboard/dataform.html', {'form': form})
