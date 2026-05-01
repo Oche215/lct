@@ -95,16 +95,15 @@ def import_excel_data(request):
                     # 4. Process rows
                     for row in imported_data:
                         Sales.objects.update_or_create(
-                            id=row[0],  # Assuming first column is ID
+                            order_date=row[0],  # Assuming first column is ID
                             defaults={
-                                'product_id': row[1],
-                                'name': row[2],
-                                'initial_stock': row[3],
-                                'stock_in': row[4],
-                                'stock_sold': row[5],
-                                'available_stock': row[6],
-                                'unit_price': row[7],
-                                'total_amount': row[8],
+                                'name': row[1],
+                                'initial_stock': row[2],
+                                'stock_in': row[3],
+                                'stock_sold': row[4],
+                                'available_stock': row[5],
+                                'unit_price': row[6],
+                                'total_amount': row[7],
                             }
                         )
 
