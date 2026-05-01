@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Product, Sales
+from .models import Product, Sales, Inventory
 from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
 
@@ -67,7 +67,7 @@ def import_inventory(request):
 
                 # 4. Process rows
                 for row in imported_data:
-                    Sales.objects.update_or_create(
+                    Inventory.objects.update_or_create(
                         product_id=row[0],  # Assuming first column is ID
                         defaults={
                             'name': row[1],
