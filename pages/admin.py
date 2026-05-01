@@ -16,4 +16,4 @@ class SalesAdmin(admin.ModelAdmin):
 
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):
-    list_display = ('product_id', 'name', 'initial_stock', 'stock_in', 'stock_sold', 'available_stock', 'unit_price', 'total_amount')
+    list_display = ('product_code', 'name', 'initial_stock', 'stock_in', 'stock_sold', 'available_stock', 'unit_price', 'total_amount')

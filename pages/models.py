@@ -62,7 +62,8 @@ class Sales(models.Model):
 
 
 class Inventory(models.Model):
-    product_id = models.AutoField(primary_key=True)  # Auto-increment ID
+    id = models.AutoField(primary_key=True)  # Auto-increment ID
+    product_code = models.CharField(unique=True)
     name = models.CharField(max_length=100)
     initial_stock = models.PositiveIntegerField()
     stock_in = models.PositiveIntegerField()
