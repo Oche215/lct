@@ -70,7 +70,7 @@ def import_inventory(request):
                     Inventory.objects.update_or_create(
                         id=row[0],  # Assuming first column is ID
                         defaults={
-                            'product_id': row[1],
+                            'product_code': row[1],
                             'name': row[2],
                             'initial_stock': row[3],
                             'stock_in': row[4],
