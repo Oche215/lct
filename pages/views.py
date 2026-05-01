@@ -39,10 +39,67 @@ def chart_view(request):
     return render(request, 'chart.html', {})
 
 
+def import_inventory(request):
+    form = UploadForm()
+    if request.method == 'POST':
+        # Pass both POST data and FILES to the form
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Replace 'file_field' with the actual field name in your form
+            uploaded_file = form.cleaned_data['file']
+
+            # 1. Validate file presence
+            if not uploaded_file:
+                messages.error(request, "No file uploaded.")
+                return render(request, 'dashboard/dataform.html', {'form': form})
+
+            # 2. Validate file extension
+            valid_extensions = ('.xlsx', '.xls')
+            if not uploaded_file.name.lower().endswith(valid_extensions):
+                messages.error(request, "Invalid file format. Please upload an Excel file.")
+                return render(request, 'dashboard/dataform.html', {'form': form})
+
+            try:
+                # 3. Load dataset
+                dataset = Dataset()
+                file = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
+                imported_data = dataset.load(uploaded_file.read(), format=file)
+
+                # 4. Process rows
+                for row in imported_data:
+                    Sales.objects.update_or_create(
+                        id=row[0],  # Assuming first column is ID
+                        defaults={
+                            'order_date': row[1],
+                            'region': row[2],
+                            'manager': row[3],
+                            'salesman': row[4],
+                            'product': row[5],
+                            'unit': row[6],
+                            'price': row[7],
+                            'amount': row[8],
+                        }
+                    )
+
+                messages.success(request, "Data imported successfully!")
+
+            except Exception as e:
+                messages.error(request, f"Error importing data: {e}")
+                return render(request, 'dashboard/dataform.html', {'form': form})
+
+    return render(request, 'dashboard/dataform.html', {'form': form})
+
+
+
+
+
 def import_excel_data(request):
     form = UploadForm()
 
     if request.method == 'POST':
+
+
+
         uploaded_file = request.FILES.get('file')
 
         # 1. Validate file presence
