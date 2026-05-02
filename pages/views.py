@@ -112,7 +112,7 @@ def _process_sales(imported_data):
                 'unit': row[6],
                 'price': row[7],
                 'amount': row[8],
-            }
+            },
         )
 
 

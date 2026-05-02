@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.validators import MinValueValidator
 from decimal import Decimal
 from django.db import models
@@ -49,7 +51,7 @@ class Product(models.Model):
 
 class Sales(models.Model):
     id = models.AutoField(primary_key=True)  # Auto-increment ID (optional, Django adds this by default)
-    order_date = models.DateTimeField()  # You can use auto_now_add=True if it's always the creation date
+    order_date = models.DateTimeField()
     region = models.CharField(max_length=200)
     manager = models.CharField(max_length=100)
     salesman = models.CharField(max_length=100)
