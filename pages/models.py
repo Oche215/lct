@@ -48,6 +48,7 @@ class Product(models.Model):
 
 
 class Sales(models.Model):
+    id = models.AutoField(primary_key=True)  # Auto-increment ID
     order_date = models.DateTimeField()
     region = models.CharField(max_length=200)
     manager = models.CharField(max_length=100)
