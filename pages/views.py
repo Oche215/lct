@@ -41,11 +41,11 @@ def chart_view(request):
 
 def import_data(request):
     form = UploadForm()
+
     if request.method == 'POST':
-        # Pass both POST data and FILES to the form
         form = UploadForm(request.POST, request.FILES)
+
         if form.is_valid():
-            # Replace 'file_field' with the actual field name in your form
             uploaded_file = form.cleaned_data['file']
 
             # 1. Validate file presence
@@ -59,66 +59,60 @@ def import_data(request):
                 messages.error(request, "Invalid file format. Please upload an Excel file.")
                 return render(request, 'dashboard/dataform.html', {'form': form})
 
-            if 'inventory_submit' in request.POST:
+            # 3. Load dataset
+            try:
+                dataset = Dataset()
+                file_format = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
+                imported_data = dataset.load(uploaded_file.read(), format=file_format)
 
-                try:
-                    # 3. Load dataset
-                    dataset = Dataset()
-                    file = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
-                    imported_data = dataset.load(uploaded_file.read(), format=file)
-
-                    # 4. Process rows
-                    for row in imported_data:
-                        Inventory.objects.update_or_create(
-                            id=row[0],  # Assuming first column is ID
-                            defaults={
-                                'product_code': row[1],
-                                'name': row[2],
-                                'initial_stock': row[3],
-                                'stock_in': row[4],
-                                'stock_sold': row[5],
-                                'available_stock': row[6],
-                                'unit_price': row[7],
-                                'total_amount': row[8],
-                            }
-                        )
-
-                    messages.success(request, "Data imported successfully!")
-
-                except Exception as e:
-                    messages.error(request, f"Error importing data: {e}")
+                # 4. Determine target model and mapping
+                if 'inventory_submit' in request.POST:
+                    _process_inventory(imported_data)
+                elif 'sales_submit' in request.POST:
+                    _process_sales(imported_data)
+                else:
+                    messages.error(request, "No valid action specified.")
                     return render(request, 'dashboard/dataform.html', {'form': form})
 
-            else:
-                if 'sales_submit' in request.POST:
-                    try:
-                        # 3. Load dataset
-                        dataset = Dataset()
-                        file_format = 'xlsx' if uploaded_file.name.lower().endswith('.xlsx') else 'xls'
-                        imported_data = dataset.load(uploaded_file.read(), format=file_format)
+                messages.success(request, "Data imported successfully!")
 
-                        # 4. Process rows
-                        for row in imported_data:
-                            Sales.objects.update_or_create(
-                                product_id=row[0],  # Assuming first column is ID
-                                defaults={
-                                    'name': row[1],
-                                    'initial_stock': row[2],
-                                    'stock_in': row[3],
-                                    'stock_sold': row[4],
-                                    'available_stock': row[5],
-                                    'unit_price': row[6],
-                                    'total_amount': row[7],
-                                }
-                            )
-
-                        messages.success(request, "Data imported successfully!")
-
-                    except Exception as e:
-                        messages.error(request, f"Error importing data: {e}")
-                        return render(request, 'dashboard/dataform.html', {'form': form})
+            except Exception as e:
+                messages.error(request, f"Error importing data: {e}")
 
     return render(request, 'dashboard/dataform.html', {'form': form})
+
+
+def _process_inventory(imported_data):
+    for row in imported_data:
+        Inventory.objects.update_or_create(
+            id=row[0],  # Assuming first column is ID
+            defaults={
+                'product_code': row[1],
+                'name': row[2],
+                'initial_stock': row[3],
+                'stock_in': row[4],
+                'stock_sold': row[5],
+                'available_stock': row[6],
+                'unit_price': row[7],
+                'total_amount': row[8],
+            }
+        )
+
+
+def _process_sales(imported_data):
+    for row in imported_data:
+        Sales.objects.update_or_create(
+            product_id=row[0],  # Assuming first column is ID
+            defaults={
+                'name': row[1],
+                'initial_stock': row[2],
+                'stock_in': row[3],
+                'stock_sold': row[4],
+                'available_stock': row[5],
+                'unit_price': row[6],
+                'total_amount': row[7],
+            }
+        )
 
 
 
