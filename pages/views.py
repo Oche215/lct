@@ -102,15 +102,16 @@ def _process_inventory(imported_data):
 def _process_sales(imported_data):
     for row in imported_data:
         Sales.objects.update_or_create(
-            product_id=row[0],  # Assuming first column is ID
+            id=row[0],  # Assuming first column is ID
             defaults={
-                'name': row[1],
-                'initial_stock': row[2],
-                'stock_in': row[3],
-                'stock_sold': row[4],
-                'available_stock': row[5],
-                'unit_price': row[6],
-                'total_amount': row[7],
+                'order_date': row[1],
+                'region': row[2],
+                'manager': row[3],
+                'salesman': row[4],
+                'product': row[5],
+                'unit': row[6],
+                'price': row[7],
+                'amount': row[8],
             }
         )
 
