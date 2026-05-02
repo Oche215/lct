@@ -1,5 +1,5 @@
-from wsgiref.handlers import format_date_time
-
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 from django.db import models
 
 # Define choices as a tuple of tuples (value, human-readable label)
@@ -48,18 +48,33 @@ class Product(models.Model):
 
 
 class Sales(models.Model):
-    id = models.AutoField(primary_key=True)  # Auto-increment ID
-    order_date = models.DateTimeField()
+    id = models.AutoField(primary_key=True)  # Auto-increment ID (optional, Django adds this by default)
+    order_date = models.DateTimeField()  # You can use auto_now_add=True if it's always the creation date
     region = models.CharField(max_length=200)
     manager = models.CharField(max_length=100)
     salesman = models.CharField(max_length=100)
-    product = models.CharField(max_length=220, blank=False)
-    unit = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    product = models.CharField(max_length=220)
+    unit = models.PositiveIntegerField(validators=[MinValueValidator(1)])  # Prevent zero or negative units
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))]  # Prevent zero or negative prices
+    )
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))]
+    )
+
+    def save(self, *args, **kwargs):
+        """
+        Automatically calculate amount before saving.
+        """
+        self.amount = self.unit * self.price
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.salesman} ({self.region})"
+        return f"{self.salesman} ({self.region}) - {self.product}"
 
 
 class Inventory(models.Model):
