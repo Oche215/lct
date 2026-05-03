@@ -70,6 +70,8 @@ def import_data(request):
                     _process_inventory(imported_data)
                 elif 'sales_submit' in request.POST:
                     _process_sales(imported_data)
+                elif 'sample_sales_submit' in request.POST:
+                    _process_sample_sales(imported_data)
                 else:
                     messages.error(request, "No valid action specified.")
                     return render(request, 'dashboard/dataform.html', {'form': form})
@@ -112,6 +114,23 @@ def _process_sales(imported_data):
                 'unit': row[6],
                 'price': row[7],
                 'amount': row[8]
+            },
+        )
+
+
+def _process_sample_sales(imported_data):
+    for row in imported_data:
+        Sales.objects.update_or_create(
+            id=row[0],  # Assuming first column is ID
+            defaults={
+                'order_no': row[1],
+                'order_date': row[2],
+                'customer_name': row[3],
+                'ship_date': row[4],
+                'price': row[5],
+                'qty': row[6],
+                'tax': row[7],
+                'total': row[8]
             },
         )
 
