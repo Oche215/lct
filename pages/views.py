@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Product, Sales, Inventory
+from .models import Product, Sales, Inventory, SampleSales
 from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
 
@@ -120,7 +120,7 @@ def _process_sales(imported_data):
 
 def _process_sample_sales(imported_data):
     for row in imported_data:
-        Sales.objects.update_or_create(
+        SampleSales.objects.update_or_create(
             id=row[0],  # Assuming first column is ID
             defaults={
                 'order_no': row[1],

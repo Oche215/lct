@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactUs, Product, Sales, Inventory
+from .models import ContactUs, Product, Sales, Inventory, SampleSales
 
 # Register your models here.
 admin.site.register(ContactUs)
@@ -17,3 +17,7 @@ class SalesAdmin(admin.ModelAdmin):
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ('product_code', 'name', 'initial_stock', 'stock_in', 'stock_sold', 'available_stock', 'unit_price', 'total_amount')
+
+@admin.register(SampleSales)
+class SampleSalesAdmin(admin.ModelAdmin):
+    list_display = ('order_no', 'order_date', 'customer_name', 'ship_date', 'price', 'qty', 'tax', 'total')
