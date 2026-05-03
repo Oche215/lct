@@ -102,8 +102,8 @@ class SampleSales(models.Model):
     ship_date = models.DateTimeField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     qty = models.PositiveIntegerField()
-    tax = models.DecimalField(max_digits=2, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    tax = models.DecimalField(max_digits=10, decimal_places=3)
+    total = models.DecimalField(max_digits=10, decimal_places=3)
 
     def __str__(self):
         return f"{self.order_no} ({self.total})"
