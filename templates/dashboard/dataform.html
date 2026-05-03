@@ -71,7 +71,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Import Excel Data Into Database</h2>
-                <p class="lead">Inventory Data Model.</p>
+                <p class="lead">Inventory Data</p>
                 <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
                     {{ form.as_p }}
                     <!-- Submit Button-->
@@ -95,6 +95,23 @@
         </div>
     </div>
 </section>
+<div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>Import Excel Data Sample Sales</h2>
+                <p class="lead">Sample Sames Data</p>
+                <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+                    {{ form.as_p }}
+                    <!-- Submit Button-->
+                    <div class="text-center">
+                        <button name="sample_sales_submit" class="btn btn-outline-dark btn-lg text-uppercase" type="submit">Upload File
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 <!-- Footer-->
 <footer class="footer py-4">
