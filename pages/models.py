@@ -68,12 +68,12 @@ class Sales(models.Model):
         validators=[MinValueValidator(Decimal('0.01'))]
     )
 
-    def save(self, *args, **kwargs):
-        """
-        Automatically calculate amount before saving.
-        """
-        self.amount = self.unit * self.price
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """
+    #     Automatically calculate amount before saving.
+    #     """
+    #     self.amount = self.unit * self.price
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.salesman} ({self.region}) - {self.product}"
