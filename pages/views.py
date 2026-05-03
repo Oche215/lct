@@ -104,18 +104,16 @@ def _process_sales(imported_data):
         Sales.objects.update_or_create(
             id=row[0],  # Assuming first column is ID
             defaults={
-                'order_no': row[1],
-                'customer': row[2],
-                'ship_date': row[3],
-                'unit_price': row[4],
-                'qty': row[5],
-                'tax': row[6],
-                'total': row[7],
+                'order_date': row[1],
+                'region': row[2],
+                'manager': row[3],
+                'salesman': row[4],
+                'product': row[5],
+                'unit': row[6],
+                'price': row[7],
+                'amount': row[8]
             },
         )
-
-
-
 
 
 def import_excel_data(request):
