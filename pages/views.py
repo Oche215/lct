@@ -135,7 +135,6 @@ def _process_sample_sales(imported_data):
         )
 
 
-def import_excel_data(request):
-    form = None
+def chart_page(request):
 
-    return render(request, 'dashboard/dataform.html', {'form': form})
+    return render(request, 'dashboard/chart.html', {})
