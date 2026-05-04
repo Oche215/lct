@@ -31,7 +31,7 @@
     </div>
 </header>
 <!-- Content section-->
-<section class="py-3">
+<section class="py-5">
     <div class="container">
         {% if messages %}
         {% for message in messages %}
@@ -42,17 +42,16 @@
         {% endfor %}
         {% endif %}
     </div>
-    <div class="container my-3">
+    <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Import Excel Data Into Database</h2>
-                <p class="lead">Sales Data Model.</p>
+                <p class="lead">Select the appropriate file and Model.</p>
                 <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
                     {{ form.as_p }}
                     <!-- Submit Button-->
                     <div class="text-center">
 
-                        <div class="input-group">
                             <div class="input-group-append">
                                 <button name="sales_submit" class="btn btn-outline-dark btn-lg " type="submit">
                                     Load Sales
@@ -61,38 +60,14 @@
                                 <button name="sample_sales_submit" class="btn btn-outline-dark btn-lg" type="submit">Load Sample Sales</button>
 
                             </div>
-                        </div>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <div class="container my-3">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <hr class="text-mute">
-            </div>
-        </div>
-    </div>
 </section>
-<div class="container my-3">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <h2>Import Excel Data Into Database</h2>
-            <p class="lead">Inventory Data</p>
-            <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-                {{ form.as_p }}
-                <!-- Submit Button-->
-                <div class="text-center">
-                    <button name="inventory_submit" class="btn btn-outline-dark btn-xl text-uppercase" type="submit">
-                        Upload File
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <!-- Content section-->
 <section class="py-5">
     <div class="container my-5">
@@ -103,23 +78,7 @@
         </div>
     </div>
 </section>
-<div class="container my-3">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <h2>Import Sample Sales Data</h2>
-            <p class="lead text-red">Sample Sales Data</p>
-            <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
-                {{ form.as_p }}
-                <!-- Submit Button-->
-                <div class="text-center">
-                    <button name="sample_sales_submit" class="btn btn-outline-dark btn-xl text-uppercase" type="submit">
-                        Upload File
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 
 <!-- Footer-->
