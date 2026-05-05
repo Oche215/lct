@@ -138,3 +138,11 @@ def _process_sample_sales(imported_data):
 def chart_page(request):
 
     return render(request, 'dashboard/chart.html', {})
+
+def sales_chart_data(request):
+    # Fetch data from database
+    data = SampleSales.objects.all().order_by('order_date')
+    labels = [entry.order_date.strftime('%Y-%m-%d') for entry in data]
+    values = [entry.total for entry in data]
+
+    return JsonResponse({'labels': labels, 'values': values})
