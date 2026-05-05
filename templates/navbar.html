@@ -14,7 +14,7 @@
 
                 {% if request.path == '/import/' or request.path == '/view-chart/' %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'view_chart' %}">Chart</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'chart-page' %}">Chart</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'import' %}">Data Import</a></li>
                 {% else %}
 
@@ -23,7 +23,7 @@
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="view_chart">Chart</a></li>
+                <li class="nav-item"><a class="nav-link" href="chart-page">Chart</a></li>
 
                 {% endif %}
             </ul>
