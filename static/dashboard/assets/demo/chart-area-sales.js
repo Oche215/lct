@@ -39,7 +39,7 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
         // Function to fetch data from Django API and update chart
         function updateChart() {
-            fetch('/api/chart-data/')
+            fetch('https://lcttechnologies.com/api/sales-chart-data/')
                 .then(response => response.json())
                 .then(data => {
                     myChart.data.labels = data.labels;
