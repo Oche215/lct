@@ -80,6 +80,46 @@
                         </div>
                     </div>
                 </main>
+            <div class="container">
+                <table class="table" id="dataTable">
+  <thead>
+    <th>Year</th>
+    <th>Items Sold</th>
+    <th>Turnover ($)</th>
+    <th>Profit ($)</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2016</td>
+      <td>10</td>
+      <td>200</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <td>2017</td>
+      <td>25</td>
+      <td>550</td>
+      <td>225</td>
+    </tr>
+    <tr>
+      <td>2018</td>
+      <td>55</td>
+      <td>1200</td>
+      <td>600</td>
+    </tr>
+    <tr>
+      <td>2019</td>
+      <td>120</td>
+      <td>2450</td>
+      <td>1100</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="chart">
+  <canvas id="myChart"></canvas>
+</div>
+            </div>
         </div>
     </div>
 </section>
@@ -121,7 +161,30 @@
 <script src="{% static 'dashboard/assets/demo/chart-area-demo.js' %}"></script>
 <script src="{% static 'dashboard/assets/demo/chart-bar-demo.js' %}"></script>
 <script src="{% static 'dashboard/assets/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'dashboard/assets/demo/buildchart.js' %}"></script>
 <!--        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>-->
 <!--        <script src="{% static 'js/datatables-simple-demo.js' %}"></script>-->
+
+<!--<script>-->
+<!--    var table = document.getElementById('dataTable');-->
+<!--    var json = []]; // First row needs to be headers-->
+<!--    var headers =[];-->
+<!--    for (var i = 0; i < table.rows[0].cells.length; i++) {-->
+<!--      headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi, '');-->
+<!--    }-->
+
+<!--    // Go through cells-->
+<!--    for (var i = 1; i < table.rows.length; i++) {-->
+<!--      var tableRow = table.rows[i];-->
+<!--      var rowData = {};-->
+<!--      for (var j = 0; j < tableRow.cells.length; j++) {-->
+<!--        rowData[headers[j]] = tableRow.cells[j].innerHTML;-->
+<!--      }-->
+
+<!--      json.push(rowData);-->
+<!--    }-->
+
+<!--    console.log(json);-->
+<!--</script>-->
 
 {% endblock %}
