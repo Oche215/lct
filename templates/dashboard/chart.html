@@ -160,16 +160,16 @@
                                             </thead>
 
                                             <tbody>
-                                            {% for product in products %}
+                                            {% for sale in sales %}
                                             <tr>
-                                                <td>{{ sales.order_number }}</td>
-                                                <td>{{ sales.order_date }}</td>
-                                                <td>{{ sales.customer_name }}</td>
-                                                <td>{{ sales.ship_date }}</td>
-                                                <td class="text-right">{{ sales.price }}</td>
+                                                <td>{{ sale.order_number }}</td>
+                                                <td>{{ sale.order_date }}</td>
+                                                <td>{{ sale.customer_name }}</td>
+                                                <td>{{ sale.ship_date }}</td>
+                                                <td class="text-right">{{ sale.price }}</td>
                                                 <td>{{ sales.qty }}</td>
-                                                <td class="text-right">{{ sales.tax }}</td>
-                                                <td class="text-right">{{ sales.total }}</td>
+                                                <td class="text-right">{{ sale.tax }}</td>
+                                                <td class="text-right">{{ sale.total }}</td>
 
                                             </tr>
                                             {% endfor %}
