@@ -1,6 +1,6 @@
 
         // Fetch data from Django API
-        fetch('api/sales-mon-total-data/')
+        fetch('https://lcttechnologies.com/api/sales-mon-total-data/')
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
