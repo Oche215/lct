@@ -63,4 +63,4 @@ var values = json.map(function (e) {
     return e.itemssold;
 });
 console.log(values);
-var chart = BuildChart(labels, values, "Items Sold Over Time");
+var chart = BuildChart(labels, values,);
