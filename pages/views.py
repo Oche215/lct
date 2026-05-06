@@ -148,3 +148,11 @@ def sales_chart_data(request):
     values = [entry.total for entry in data]
 
     return JsonResponse({'labels': labels, 'values': values})
+
+def sales_chart_month_total_data(request):
+    # Fetch data from database
+    data = SampleSales.objects.all()
+    labels = [entry.order_date.strftime('%b') for entry in data]
+    values = [entry.total for entry in data]
+
+    return JsonResponse({'labels': labels, 'values': values})
