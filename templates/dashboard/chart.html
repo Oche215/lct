@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="container-fluid px-4">
+                        <div class="container-fluid">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -162,24 +162,21 @@
                                         <tbody>
                                         {% for sale in sales %}
                                         <tr>
-                                            <td class="text-left">{{ sale.order_no }}</td>
-                                            <td class="text-left">{{ sale.order_date|date:"F j, Y" }}</td>
-                                            <td class="text-left">{{ sale.customer_name }}</td>
-                                            <td class="text-left">{{ sale.ship_date|date:"F j, Y" }}</td>
-                                            <td class="text-right">{{ sale.price }}</td>
+                                            <td class="text-start">{{ sale.order_no }}</td>
+                                            <td class="text-start">{{ sale.order_date|date:"F j, Y" }}</td>
+                                            <td class="text-start">{{ sale.customer_name }}</td>
+                                            <td class="text-start">{{ sale.ship_date|date:"F j, Y" }}</td>
+                                            <td class="text-end">{{ sale.price }}</td>
                                             <td>{{ sale.qty }}</td>
-                                            <td class="text-right">{{ sale.tax }}</td>
-                                            <td class="text-right">{{ sale.total }}</td>
+                                            <td class="text-end">{{ sale.tax }}</td>
+                                            <td class="text-end">{{ sale.total }}</td>
 
                                         </tr>
                                         {% endfor %}
 
                                         </tbody>
                                     </table>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
