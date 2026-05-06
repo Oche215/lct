@@ -141,7 +141,7 @@
                                 Hoverable Data Table
                             </div>
                             <div class="card-body">
-                                    <div class="hoverable-data-table">
+
                                         <table id="hoverable-data-table" class="table table-hover nowrap"
                                                style="width:100%">
                                             <thead>
@@ -161,10 +161,10 @@
                                             <tbody>
                                             {% for sale in sales %}
                                             <tr>
-                                                <td>{{ sale.order_no }}</td>
-                                                <td>{{ sale.order_date }}</td>
-                                                <td>{{ sale.customer_name }}</td>
-                                                <td>{{ sale.ship_date }}</td>
+                                                <td class="text-left">{{ sale.order_no }}</td>
+                                                <td class="text-left">{{ sale.order_date }}</td>
+                                                <td class="text-left">{{ sale.customer_name }}</td>
+                                                <td class="text-left">{{ sale.ship_date }}</td>
                                                 <td class="text-right">{{ sale.price }}</td>
                                                 <td>{{ sale.qty }}</td>
                                                 <td class="text-right">{{ sale.tax }}</td>
@@ -175,7 +175,7 @@
 
                                             </tbody>
                                         </table>
-                                    </div>
+
                             </div>
 
 
