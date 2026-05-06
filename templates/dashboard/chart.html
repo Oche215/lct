@@ -244,26 +244,46 @@
 <!--        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>-->
 <!--        <script src="{% static 'js/datatables-simple-demo.js' %}"></script>-->
 
-<!--<script>-->
-<!--    var table = document.getElementById('dataTable');-->
-<!--    var json = []]; // First row needs to be headers-->
-<!--    var headers =[];-->
-<!--    for (var i = 0; i < table.rows[0].cells.length; i++) {-->
-<!--      headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi, '');-->
-<!--    }-->
+<script>
+        // Fetch data from Django API
+        fetch('/api/sales-data/')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error fetching sales data:", data.error);
+                    return;
+                }
 
-<!--    // Go through cells-->
-<!--    for (var i = 1; i < table.rows.length; i++) {-->
-<!--      var tableRow = table.rows[i];-->
-<!--      var rowData = {};-->
-<!--      for (var j = 0; j < tableRow.cells.length; j++) {-->
-<!--        rowData[headers[j]] = tableRow.cells[j].innerHTML;-->
-<!--      }-->
+                const ctx = document.getElementById('salesChart').getContext('2d');
 
-<!--      json.push(rowData);-->
-<!--    }-->
-
-<!--    console.log(json);-->
-<!--</script>-->
+                new Chart(ctx, {
+                    type: 'bar', // Change to 'line' for line chart
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Total Sales',
+                            data: data.values,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value; // Format as currency
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error("Fetch error:", error));
+    </script>
 
 {% endblock %}
