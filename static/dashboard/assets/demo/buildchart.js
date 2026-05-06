@@ -5,7 +5,7 @@ function BuildChart(labels, values, chartTitle) {
         data: {
             labels: labels, // Our labels
             datasets: [{
-                label: chartTitle, // Name the series
+                label: // Name the series
                 data: values, // Our values
                 backgroundColor: [ // Specify custom colors
                     'rgba(255, 99, 132, 0.2)',
@@ -63,4 +63,4 @@ var values = json.map(function (e) {
     return e.itemssold;
 });
 console.log(values);
-var chart = BuildChart(labels, values,);
+var chart = BuildChart(labels, values, "Items Sold Over Time");
