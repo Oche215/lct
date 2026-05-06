@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from .models import Product, Sales, Inventory, SampleSales
 from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
+from django.db.models import Sum
+from django.db.models.functions import TruncMonth
 
 from tablib import Dataset
 from .resources import SalesResources
@@ -150,9 +152,21 @@ def sales_chart_data(request):
     return JsonResponse({'labels': labels, 'values': values})
 
 def sales_chart_month_total_data(request):
-    # Fetch data from database
-    data = SampleSales.objects.all()
-    labels = [entry.order_date.strftime('%b') for entry in data]
-    values = [entry.total for entry in data]
+    try:
+        # Aggregate sales totals by month
+        sales_data = (
+            SampleSales.objects
+            .annotate(month=TruncMonth('order_date'))  # Extract month
+            .values('month')
+            .annotate(total_sales=Sum('total'))       # Sum totals per month
+            .order_by('month')                        # Chronological order
+        )
 
-    return JsonResponse({'labels': labels, 'values': values})
+        # Prepare labels and values
+        labels = [entry['month'].strftime('%b') for entry in sales_data]
+        values = [float(entry['total_sales']) for entry in sales_data]
+
+        return JsonResponse({'labels': labels, 'values': values})
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
