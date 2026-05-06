@@ -5,7 +5,7 @@ function BuildChart(labels, values, chartTitle) {
         data: {
             labels: labels, // Our labels
             datasets: [{
-                label: // Name the series
+                label: chartTitle, // Name the series
                 data: values, // Our values
                 backgroundColor: [ // Specify custom colors
                     'rgba(255, 99, 132, 0.2)',
