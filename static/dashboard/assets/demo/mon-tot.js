@@ -11,7 +11,7 @@
                 const ctx = document.getElementById('salesChart').getContext('2d');
 
                 new Chart(ctx, {
-                    type: 'bar', // Change to 'line' for line chart
+                    type: 'line', // Change to 'line' for line chart
                     data: {
                         labels: data.labels,
                         datasets: [{
