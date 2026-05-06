@@ -162,12 +162,12 @@
                                             <tbody>
                                             {% for sale in sales %}
                                             <tr>
-                                                <td>{{ sale.order_number }}</td>
+                                                <td>{{ sale.order_no }}</td>
                                                 <td>{{ sale.order_date }}</td>
                                                 <td>{{ sale.customer_name }}</td>
                                                 <td>{{ sale.ship_date }}</td>
                                                 <td class="text-right">{{ sale.price }}</td>
-                                                <td>{{ sales.qty }}</td>
+                                                <td>{{ sale.qty }}</td>
                                                 <td class="text-right">{{ sale.tax }}</td>
                                                 <td class="text-right">{{ sale.total }}</td>
 
