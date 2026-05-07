@@ -176,11 +176,21 @@ def sales_chart_month_total_data(request):
 def fifa_stadium(request):
     # It's better to store your API key in environment variables for security
     api_key = 'ea24b25f-057d-4744-bac3-60194908a774'
-    url = 'https://balldontlie.io'  # Verify this path in your dashboard
+    url = 'https://api.balldontlie.io/fifa/worldcup/v1/stadiums'  # Verify this path in your dashboard
 
     headers = {
         'Authorization': api_key
     }
+
+    # response = requests.get(
+    #     'https://api.balldontlie.io/fifa/worldcup/v1/stadiums',
+    #     headers={'Authorization': 'YOUR_API_KEY'}
+    # )
+    #
+    # if response.status_code == 200:
+    #     stadiums = response.json()['data']
+    #     for stadium in stadiums:
+    #         print(f"{stadium['name']} - {stadium['city']}")
 
     try:
         response = requests.get(url, headers=headers, timeout=10)
