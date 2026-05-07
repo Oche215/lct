@@ -186,16 +186,38 @@ def fifa_stadium(request):
         response = requests.get(url, headers=headers, timeout=10)
 
         if response.status_code == 200:
-            return JsonResponse(response.json())
+            raw_data = response.json().get('data', [])  # Access the list of stadiums
 
-        # Return the actual error from the API for easier debugging
-        return JsonResponse(
-            {"error": f"API Error: {response.status_code}", "details": response.text},
-            status=response.status_code
-        )
+            # Format for Chart.js
+            labels = [item['name'] for item in raw_data]  # X-axis: Stadium Name
+            values = [item['capacity'] for item in raw_data]  # Y-axis: Seating Capacity
+
+            return JsonResponse({'labels': labels, 'values': values })
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection failed", "message": str(e)}, status=500)
+
+
+# def stadium_chart_data(request):
+#     api_key = 'ea24b25f-057d-4744-bac3-60194908a774'
+#     url = 'https://balldontlie.io'
+#
+#     try:
+#         response = requests.get(url, headers={'Authorization': api_key})
+#         if response.status_code == 200:
+#             raw_data = response.json().get('data', [])  # Access the list of stadiums
+#
+#             # Format for Chart.js
+#             labels = [item['name'] for item in raw_data]  # X-axis: Stadium Name
+#             values = [item['capacity'] for item in raw_data]  # Y-axis: Seating Capacity
+#
+#             return JsonResponse({
+#                 'labels': labels,
+#                 'values': values
+#             })
+#     except Exception as e:
+#         return JsonResponse({"error": str(e)}, status=500)
+
 
 
 
