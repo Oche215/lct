@@ -5,7 +5,7 @@ from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth
-import requests
+
 
 from tablib import Dataset
 from .resources import SalesResources
