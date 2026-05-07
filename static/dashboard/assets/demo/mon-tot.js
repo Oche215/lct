@@ -1,4 +1,3 @@
-
         // Fetch data from Django API
         fetch('/api/sales-mon-total-data/')
             .then(response => response.json())
