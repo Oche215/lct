@@ -5,7 +5,7 @@ from .forms import ContactUsForm, SalesForm, UploadForm
 from django.contrib import messages
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth
-
+import requests
 
 from tablib import Dataset
 from .resources import SalesResources
@@ -173,5 +173,19 @@ def sales_chart_month_total_data(request):
         return JsonResponse({'error': str(e)}, status=500)
 
 
+def fifa(request):
+    try:
+        # Make an external API request
+        response = requests.get('https://api.balldontlie.io/fifa/worldcup/v1/stadiums', headers={'Authorization': 'ea24b25f-057d-4744-bac3-60194908a774'})
+        if response.status_code == 200:
+            posts = response.json()
+            return JsonResponse(posts)
+        else:
+            print('Error:', response.status_code)
+            return JsonResponse(response.status_code)
+
+    except requests.exceptions.RequestException as e:
+
+        return JsonResponse({"error": str(e)}, status=500)
 
 
