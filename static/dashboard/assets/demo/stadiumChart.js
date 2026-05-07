@@ -4,7 +4,7 @@ async function loadChart() {
 
     const ctx = document.getElementById('stadiumChart').getContext('2d');
     new Chart(ctx, {
-        type: 'pie', // You can change this to 'line', 'pie', etc.
+        type: 'line', // You can change this to 'line', 'pie', etc.
         data: {
             labels: chartData.labels,
             datasets: [{
