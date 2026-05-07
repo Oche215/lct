@@ -173,19 +173,29 @@ def sales_chart_month_total_data(request):
         return JsonResponse({'error': str(e)}, status=500)
 
 
-def fifa(request):
+def fifa_stadium(request):
+    # It's better to store your API key in environment variables for security
+    api_key = 'ea24b25f-057d-4744-bac3-60194908a774'
+    url = 'https://balldontlie.io'  # Verify this path in your dashboard
+
+    headers = {
+        'Authorization': api_key
+    }
+
     try:
-        # Make an external API request
-        response = requests.get('https://api.balldontlie.io/fifa/worldcup/v1/stadiums', headers={'Authorization': 'ea24b25f-057d-4744-bac3-60194908a774'})
+        response = requests.get(url, headers=headers, timeout=10)
+
         if response.status_code == 200:
-            posts = response.json()
-            return JsonResponse(posts)
-        else:
-            print('Error:', response.status_code)
-            return JsonResponse(response.status_code)
+            return JsonResponse(response.json())
+
+        # Return the actual error from the API for easier debugging
+        return JsonResponse(
+            {"error": f"API Error: {response.status_code}", "details": response.text},
+            status=response.status_code
+        )
 
     except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Connection failed", "message": str(e)}, status=500)
 
-        return JsonResponse({"error": str(e)}, status=500)
 
 
