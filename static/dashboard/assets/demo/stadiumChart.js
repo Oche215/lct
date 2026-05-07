@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const ctx = document.getElementById('stadiumChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'pie',
+                    type: 'line',
                     data: {
                         labels: data.labels, // Data from your JsonResponse
                         datasets: [{
