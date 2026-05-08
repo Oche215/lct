@@ -134,62 +134,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="container-fluid">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area me-1"></i>
-                                    Hoverable Data Table
-                                </div>
-                                <div class="card-body">
-
-                                    <table id="hoverable-data-table" class="table table-hover nowrap"
-                                           style="width:100%">
-                                        <thead>
-                                        <tr class="text-start">
-                                            <th>ORDER No</th>
-                                            <th>ORDER DATE</th>
-                                            <th>CUSTOMER</th>
-                                            <th>SHIP DATE</th>
-                                            <th>PRICE</th>
-                                            <th>QTY</th>
-                                            <th>TAX</th>
-                                            <th>TOTAL</th>
-
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        {% for sale in sales %}
-                                        <tr>
-                                            <td class="text-start">{{ sale.order_no }}</td>
-                                            <td class="text-start">{{ sale.order_date|date:"F j, Y" }}</td>
-                                            <td class="text-start">{{ sale.customer_name }}</td>
-                                            <td class="text-start">{{ sale.ship_date|date:"F j, Y" }}</td>
-                                            <td class="text-end">{{ sale.price }}</td>
-                                            <td>{{ sale.qty }}</td>
-                                            <td class="text-end">{{ sale.tax }}</td>
-                                            <td class="text-end">{{ sale.total }}</td>
-
-                                        </tr>
-                                        {% endfor %}
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 <!--                    <div class="row">-->
 <!--                        <div class="container-fluid">-->
 <!--                            <div class="card mb-4">-->
 <!--                                <div class="card-header">-->
 <!--                                    <i class="fas fa-chart-area me-1"></i>-->
-<!--                                    salesChart-->
+<!--                                    Hoverable Data Table-->
 <!--                                </div>-->
 <!--                                <div class="card-body">-->
-<!--                                    <h2>Monthly Sales</h2>-->
-<!--                                    <canvas id="salesChart" width="400" height="200"></canvas>-->
+
+<!--                                    <table id="hoverable-data-table" class="table table-hover nowrap"-->
+<!--                                           style="width:100%">-->
+<!--                                        <thead>-->
+<!--                                        <tr class="text-start">-->
+<!--                                            <th>ORDER No</th>-->
+<!--                                            <th>ORDER DATE</th>-->
+<!--                                            <th>CUSTOMER</th>-->
+<!--                                            <th>SHIP DATE</th>-->
+<!--                                            <th>PRICE</th>-->
+<!--                                            <th>QTY</th>-->
+<!--                                            <th>TAX</th>-->
+<!--                                            <th>TOTAL</th>-->
+
+<!--                                        </tr>-->
+<!--                                        </thead>-->
+
+<!--                                        <tbody>-->
+<!--                                        {% for sale in sales %}-->
+<!--                                        <tr>-->
+<!--                                            <td class="text-start">{{ sale.order_no }}</td>-->
+<!--                                            <td class="text-start">{{ sale.order_date|date:"F j, Y" }}</td>-->
+<!--                                            <td class="text-start">{{ sale.customer_name }}</td>-->
+<!--                                            <td class="text-start">{{ sale.ship_date|date:"F j, Y" }}</td>-->
+<!--                                            <td class="text-end">{{ sale.price }}</td>-->
+<!--                                            <td>{{ sale.qty }}</td>-->
+<!--                                            <td class="text-end">{{ sale.tax }}</td>-->
+<!--                                            <td class="text-end">{{ sale.total }}</td>-->
+
+<!--                                        </tr>-->
+<!--                                        {% endfor %}-->
+
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    salesChart
+                                </div>
+                                <div class="card-body">
+                                    <h2>Monthly Sales</h2>
+                                    <canvas id="salesChart" width="400" height="200"></canvas>
 
 
 <!--                                </div>-->
