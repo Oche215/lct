@@ -140,9 +140,9 @@ def _process_sample_sales(imported_data):
 
 def chart_page(request):
 
-    sales = SampleSales.objects.all().order_by('order_date')
+    # sales = SampleSales.objects.all().order_by('order_date')
 
-    return render(request, 'dashboard/chart.html', {'sales': sales})
+    return render(request, 'dashboard/chart.html', {'sales': 'sales'})
 
 def sales_chart_data(request):
     # Fetch data from database
