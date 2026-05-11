@@ -4,7 +4,7 @@
             .then(data => {
                 const ctx = document.getElementById('stadiumChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: data.labels, // Data from your JsonResponse
                         datasets: [{
