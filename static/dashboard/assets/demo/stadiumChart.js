@@ -10,7 +10,7 @@
                         datasets: [{
                             label: 'Stadium Capacity',
                             data: data.values,
-                            backgroundColor: ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'] //'rgba(54, 162, 235, 0.6)'
+                            backgroundColor: ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'brown', 'yellow'] //'rgba(54, 162, 235, 0.6)'
                         }]
                     },
                     options: {
