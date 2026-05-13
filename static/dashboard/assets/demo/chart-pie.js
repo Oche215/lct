@@ -10,7 +10,7 @@ const response = await fetch("{% url 'chart_data' %}");
 
 //var ctx = document.getElementById("myPieChart").getContext("2d");
 var myPieChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     labels: chartData.labels,
     datasets: [{
