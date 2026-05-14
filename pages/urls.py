@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import home, chart_data, chart_view, chart_page, import_data, sales_chart_data, sales_chart_month_total_data, fifa_stadium
-
+from .views import home, chart_data, chart_view, chart_page, import_data, sales_chart_data, sales_chart_month_total_data, fifa_stadium, wine_chart
 
 urlpatterns = [
+
+    path("wine-chart/", wine_chart, name="wine-chart"),
 
     path('api/fifa/', fifa_stadium, name='fifa'),
 
