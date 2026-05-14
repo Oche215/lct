@@ -28,7 +28,7 @@ def home(request):
     return render(request, 'home.html', {'form': form})
 
 def wine_chart(request):
-    return render(request, 'winechart.html', {})
+    return render(request, 'dashboard/winechart.html', {})
 
 
 
