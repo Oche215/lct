@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block link %}
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
 {% endblock link %}
 
 {% block content %}
@@ -169,6 +169,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fa fa-pie-chart me-1"></i>
+                                    Wine production Chart
+                                </div>
+                                <div class="card-body">
+                                    <h2>Wine Production</h2>
+                                    <canvas id="wineChart" width="400" height="200"></canvas>
+
+                                </div>
+                                <div class="card-footer small text-muted">
+                                    Directorate-General for Agriculture and Rural Development
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
@@ -216,11 +235,33 @@
 <script src="{% static 'dashboard/assets/demo/mon-tot.js' %}"></script>
 <script src="{% static 'dashboard/assets/demo/stadiumChart.js' %}"></script>
 
-<!--        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>-->
-<!--        <script src="{% static 'js/datatables-simple-demo.js' %}"></script>-->
+<script>
+    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const yValues = [55, 49, 44, 24, 15];
+    const barColors = ["red", "green","blue","orange","brown"];
 
-<!---->
+    const ctx = document.getElementById('wineChart');
 
-<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "World Wine Production 2018",
+            font: {size: 16}
+          }
+        }
+      }
+    });
+</script>
 
 {% endblock %}
