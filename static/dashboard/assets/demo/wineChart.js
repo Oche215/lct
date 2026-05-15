@@ -12,11 +12,12 @@ const data = google.visualization.arrayToDataTable([
 
 // Set Options
 const options = {
-  title: 'World Wide Wine Production'
+  title: 'World Wide Wine Production',
+  is3D: true
 };
 
 // Draw
-const chart = new google.visualization.BarChart(document.getElementById('wineChart'));
+const chart = new google.visualization.PieChart(document.getElementById('wineChart'));
 chart.draw(data, options);
 
 }
