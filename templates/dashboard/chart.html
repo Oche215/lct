@@ -194,6 +194,35 @@
     </div>
 </section>
 
+<script>
+    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const yValues = [55, 49, 44, 24, 15];
+    const barColors = ["red", "green","blue","orange","brown"];
+
+    const ctx = document.getElementById('wineChart');
+
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "World Wine Production 2018",
+            font: {size: 16}
+          }
+        }
+      }
+    });
+</script>
+
 <!-- Footer-->
 <footer class="footer py-4">
     <div class="container">
@@ -235,33 +264,6 @@
 <script src="{% static 'dashboard/assets/demo/mon-tot.js' %}"></script>
 <script src="{% static 'dashboard/assets/demo/stadiumChart.js' %}"></script>
 
-<script>
-    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    const yValues = [55, 49, 44, 24, 15];
-    const barColors = ["red", "green","blue","orange","brown"];
 
-    const ctx = document.getElementById('wineChart');
-
-    new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {display: false},
-          title: {
-            display: true,
-            text: "World Wine Production 2018",
-            font: {size: 16}
-          }
-        }
-      }
-    });
-</script>
 
 {% endblock %}
