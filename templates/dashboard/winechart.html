@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block link %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
 {% endblock link %}
 
 {% block content %}
@@ -36,59 +36,54 @@
             <h3 class="h5 text-mute mb-4" style="font-family: 'Bradley Hand ITC'">data analytics</h3>
         </div>
         <div class="row text-center">
-            <main>
-                <div class="container-fluid px-4">
+            <div class="col-lg-6">
 
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fa fa-pie-chart me-1"></i>
-                            Wine production Chart
-                        </div>
 
-                        <div class="card-body">
-                            <canvas id="myChart" width="50%" height="10"></canvas>
-                        </div>
-                        <div class="card-footer small text-muted">Directorate-General for Agriculture and Rural
-                            Development
-                        </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fa fa-pie-chart me-1"></i>
+                        Wine production Chart
                     </div>
 
+                    <div class="card-body">
+                        <canvas id="myChart" width="50%" height="10"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">Directorate-General for Agriculture and Rural
+                        Development
+                    </div>
                 </div>
-            </main>
+            </div>
+
+
         </div>
     </div>
 </section>
 
 
-
-
 <script>
-    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    const yValues = [55, 49, 44, 24, 15];
-    const barColors = ["red", "green","blue","orange","brown"];
+    function drawChart() {
 
-    const ctx = document.getElementById('myChart');
+// Set Data
+const data = google.visualization.arrayToDataTable([
+  ['Country', 'Mhl'],
+  ['Italy', 55],
+  ['France', 49],
+  ['Spain', 44],
+  ['USA', 24],
+  ['Argentina', 15]
+]);
 
-    new Chart(ctx, {
-      type: "doughnut",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {display: false},
-          title: {
-            display: true,
-            text: "World Wine Production 2018",
-            font: {size: 16}
-          }
-        }
-      }
-    });
+// Set Options
+const options = {
+  title: 'World Wide Wine Production',
+  is3D: true
+};
+
+// Draw
+const chart = new google.visualization.PieChart(document.getElementById('wineChart'));
+chart.draw(data, options);
+
+}
 </script>
 
 <!-- Footer-->
